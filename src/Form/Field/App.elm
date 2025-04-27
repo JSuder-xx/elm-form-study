@@ -1,5 +1,6 @@
 module Form.Field.App exposing (..)
 
+import Date exposing (Date)
 import Form.Field as Field exposing (Field, No, withInitialValue)
 import Form.Field.Options as Options
 import Form.Field.Options.Optional as Optional exposing (Optional)
@@ -64,3 +65,13 @@ requireOption =
 
                 Optional.ValueSelected x ->
                     Ok x
+
+
+date : Field String (Maybe Date) input Date Input { min : Date, max : Date, required : (), wasMapped : No, step : Int }
+date =
+    Field.date { invalid = \_ -> "Invalid date" }
+
+
+time : Field String (Maybe Field.TimeOfDay) input Field.TimeOfDay Input { min : Field.TimeOfDay, max : Field.TimeOfDay, required : (), wasMapped : No, step : Int }
+time =
+    Field.time { invalid = \_ -> "Invalid time" }

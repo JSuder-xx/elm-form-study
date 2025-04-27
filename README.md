@@ -7,7 +7,6 @@ An experiment with declarative, succinct, composable forms in Elm using as many 
 - [Pico CSS](https://picocss.com/) for low level CSS reset / styling.
 - [miniBill/elm-codec](https://package.elm-lang.org/packages/miniBill/elm-codec/2.2.0/) for succinct declaration of symmetrical Json (en/de)coders.
 
-
 ## Conventions
 
 - Modules with `Extra` suffix are candidates for an application agnostic library.

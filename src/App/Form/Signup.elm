@@ -10,8 +10,6 @@ import Form.Field.App as FieldApp
 import Form.FieldView.App as FieldView
 import Form.Validation as Validation
 import Form.Validation.Extra as Validation
-import Html
-import Html.Attributes
 
 
 form : Form.HtmlForm String User (Maybe User) msg

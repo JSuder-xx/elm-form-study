@@ -5,12 +5,10 @@ import Date exposing (Date)
 import Form
 import Form.Extra
 import Form.Field as Field
-import Form.Field.App exposing (required, requiredText)
+import Form.Field.App as FieldApp exposing (required, requiredText)
 import Form.FieldView.App as FieldView
 import Form.Validation as Validation
 import Form.Validation.Extra as Validation
-import Html
-import Html.Attributes
 
 
 form : Form.HtmlForm String Stay input msg
@@ -56,19 +54,13 @@ form =
         |> Form.form
         |> Form.field "name" requiredText
         |> Form.field "checkin"
-            (Field.date
-                { invalid = \_ -> "Invalid" }
+            (FieldApp.date
                 |> required
                 |> Field.withMin today ("Must be after " ++ Date.toIsoString today)
             )
-        |> Form.field "checkout"
-            (Field.date
-                { invalid = \_ -> "Invalid" }
-                |> required
-            )
+        |> Form.field "checkout" (FieldApp.date |> required)
         |> Form.field "checkinTime"
-            (Field.time
-                { invalid = \_ -> "Invalid" }
+            (FieldApp.time
                 |> required
                 |> Field.withMin { hours = 10, minutes = 0, seconds = Nothing } "Must be after today"
             )
