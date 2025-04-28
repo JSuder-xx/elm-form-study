@@ -1,7 +1,8 @@
 module Form.Field.App exposing (..)
 
+import Codec exposing (Codec)
 import Date exposing (Date)
-import Form.Field as Field exposing (Field, No, withInitialValue)
+import Form.Field as Field exposing (Field, No, TimeOfDay, withInitialValue)
 import Form.Field.Options as Options
 import Form.Field.Options.Optional as Optional exposing (Optional)
 import Form.FieldView exposing (Input, Options)
@@ -75,3 +76,12 @@ date =
 time : Field String (Maybe Field.TimeOfDay) input Field.TimeOfDay Input { min : Field.TimeOfDay, max : Field.TimeOfDay, required : (), wasMapped : No, step : Int }
 time =
     Field.time { invalid = \_ -> "Invalid time" }
+
+
+timeOfDayCodec : Codec TimeOfDay
+timeOfDayCodec =
+    Codec.object TimeOfDay
+        |> Codec.field "hours" .hours Codec.int
+        |> Codec.field "minutes" .minutes Codec.int
+        |> Codec.field "seconds" .seconds (Codec.nullable Codec.int)
+        |> Codec.buildObject

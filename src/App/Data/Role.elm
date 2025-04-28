@@ -1,5 +1,8 @@
 module App.Data.Role exposing (..)
 
+import Codec
+import Codec.Extra
+
 
 type Role
     = SuperAdmin
@@ -23,3 +26,8 @@ toString role =
 
         Regular ->
             "Regular"
+
+
+codec : Codec.Codec Role
+codec =
+    Codec.Extra.stringEnum toString allRoles

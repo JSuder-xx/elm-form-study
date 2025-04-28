@@ -1,5 +1,7 @@
-module App.Data.Username exposing (Username, fromString, toString)
+module App.Data.Username exposing (Username, codec, fromString, toString)
 
+import Codec exposing (Codec)
+import Codec.Extra
 import String.Nonempty exposing (NonemptyString)
 
 
@@ -24,3 +26,8 @@ toNonemptyString (Username username) =
 toString : Username -> String
 toString =
     toNonemptyString >> String.Nonempty.toString
+
+
+codec : Codec Username
+codec =
+    Codec.Extra.nonEmptyString |> Codec.andThen (fromString >> Codec.Extra.fromResult) toNonemptyString
